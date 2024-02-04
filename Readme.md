@@ -8,14 +8,14 @@ This app allows users to upload a PDF document and engage in a dynamic chat conv
 
 - **PDF Interaction:** Users can easily upload a PDF document to the application.
 - **Streamlit:** Used for building the interface, upload PDFs and interact with chat. Engage in natural language conversations with Mistral 7B.
-- **Run it locally:** The app running locally
+- **Run it locally:** The app run locally
 
 ## **Requirements**
 
 Make sure you have the following installed:
 
 - Required libraries: **`langchain`**, **`streamlit`**, **`chromadb`**, **`fastembed`**, **`pypdf`**
-- **Ollama**: you need to install `**ollama**` visit [ollama.ai](http://ollama.ai)
+- Ollama: you need to install **`ollama`** visit [ollama.ai](http://ollama.ai)
 - Mistral 7B
 
 ## **Installation**
