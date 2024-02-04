@@ -1,0 +1,1 @@
+pip install langchain streamlit streamlit-chat fastembed chromadb pypdf
