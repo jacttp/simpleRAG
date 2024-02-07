@@ -37,8 +37,8 @@ class ChatPDF:
         self.retriever = vector_store.as_retriever(
             search_type="similarity_score_threshold",
             search_kwargs={
-                "k": 3,
-                "score_threshold": 0.5,
+                "k": 4,
+                "score_threshold": 0.6,
             },
         )
 
