@@ -7,6 +7,9 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema.runnable import RunnablePassthrough
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores.utils import filter_complex_metadata
+#add new import
+from langchain_community.document_loaders.csv_loader import CSVLoader
+
 
 
 class ChatPDF:
@@ -19,8 +22,8 @@ class ChatPDF:
         self.text_splitter = RecursiveCharacterTextSplitter(chunk_size=1024, chunk_overlap=100)
         self.prompt = PromptTemplate.from_template(
             """
-            <s> [INST] You are an assistant for question-answering tasks. Use the following pieces of retrieved context 
-            to answer the question. If you don't know the answer, just say that you don't know. Use three sentences
+            <s> [INST] You are an assistant for question-answering tasks. Use only the following pieces of retrieved context 
+            to build an answer for the user. If you don't know the answer, just say that you don't know. Use three sentences
              maximum and keep the answer concise. [/INST] </s> 
             [INST] Question: {question} 
             Context: {context} 
@@ -30,6 +33,8 @@ class ChatPDF:
 
     def ingest(self, pdf_file_path: str):
         docs = PyPDFLoader(file_path=pdf_file_path).load()
+       
+        
         chunks = self.text_splitter.split_documents(docs)
         chunks = filter_complex_metadata(chunks)
 
@@ -37,8 +42,8 @@ class ChatPDF:
         self.retriever = vector_store.as_retriever(
             search_type="similarity_score_threshold",
             search_kwargs={
-                "k": 4,
-                "score_threshold": 0.6,
+                "k": 3,
+                "score_threshold": 0.5,
             },
         )
 
